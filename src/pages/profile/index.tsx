@@ -28,7 +28,7 @@ export default function Profile() {
                     </div>
 
                     <div>
-                        <button>Seguir: </button>
+                        <button>Seguirr: </button>
                         <button>XP: 385</button>
                     </div>
                 </div>
