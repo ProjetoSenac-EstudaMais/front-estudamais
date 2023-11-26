@@ -6,7 +6,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import userDefault from '../../assets/default_user.jpg';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { PostData } from "../../api/getAllPosts";
+import { PostData } from "../../api/getPosts";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import Post from "../../layout/post";

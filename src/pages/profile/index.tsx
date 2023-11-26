@@ -5,12 +5,56 @@ import { useLocation } from 'react-router-dom';
 import userDefault from "../../assets/default_user.jpg";
 import AvatarUsuario from "../../components/Avatar";
 import useUserInfo from "../../api/userInfo";
+import { useState, useEffect } from 'react';
+import { getFollowersCount, getFollowingCount, getPostsCount } from '../../api/getProfileInfo';
+import UserPosts from "../../components/posts/UserPosts";
 
 export default function Profile() {
     const location = useLocation();
     const { pathname } = location;
     const username = pathname.split('/profile/')[1];
     const { userData } = useUserInfo(username);
+    const userId = userData?.id;
+
+    console.log(userData);
+
+
+    const [followersCount, setFollowersCount] = useState<number>(0);
+    const [followingCount, setFollowingCount] = useState<number>(0);
+    const [postsCount, setPostsCount] = useState<number>(0);
+
+    useEffect(() => {
+        const fetchFollowersCount = async () => {
+            if (userId) {
+                const count = await getFollowersCount(userId);
+                setFollowersCount(count);
+            }
+        };
+
+        fetchFollowersCount();
+    }, [userId]);
+
+    useEffect(() => {
+        const fetchFollowingCount = async () => {
+            if (userId) {
+                const count = await getFollowingCount(userId);
+                setFollowingCount(count);
+            }
+        };
+
+        fetchFollowingCount();
+    }, [userId]);
+
+    useEffect(() => {
+        const fetchPostsCount = async () => {
+            if (userId) {
+                const count = await getPostsCount(userId);
+                setPostsCount(count);
+            }
+        };
+
+        fetchPostsCount();
+    }, [userId]);
 
     return (
         <div className="bg-[#F0F2F5] min-h-screen w-full">
@@ -29,16 +73,16 @@ export default function Profile() {
                             <div className="flex gap-12 py-4">
                                 <div className="flex gap-12 py-4">
                                     <div className="flex flex-col items-center">
-                                        <p className="text-xl">5</p>
+                                        <p className="text-xl">{followersCount}</p>
                                         <p className="text-xl">Seguidores</p>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <p className="text-xl">5</p>
+                                        <p className="text-xl">{followingCount}</p>
                                         <p className="text-xl">Seguindo</p>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <p className="text-xl">5</p>
-                                        <p className="text-xl">Contribuições</p>
+                                        <p className="text-xl">{postsCount}</p>
+                                        <p className="text-xl">Postagens</p>
                                     </div>
                                 </div>
                             </div>
@@ -58,8 +102,8 @@ export default function Profile() {
                 {/* Posts ou outras informações adicionais */}
                 <div className="w-[763px] h-[1px] bg-neutral-700 border-opacity-50" />
                 <div className="flex justify-center items-center w-full">
-                    <div className="bg-white pb-1 mb-4">
-
+                    <div className="bg-white pt-4 mb-4">
+                        <UserPosts userId={userId || 0} />
                     </div>
                 </div>
             </div>

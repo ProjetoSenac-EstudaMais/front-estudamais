@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useCommentModal } from "../../hooks/useCommentModal";
 import CModal from '../posts/Cmodal';
 import userDefault from "../../assets/default_user.jpg";
-import { PostData } from '../../api/getAllPosts';
+import { PostData } from '../../api/getPosts';
 import AvatarUsuario from '../Avatar';
 import useUserInfo from '../../api/userInfo';
 import CommentSection from '../posts/CommentSection';

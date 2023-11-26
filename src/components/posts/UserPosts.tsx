@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react';
-import { getAllPosts, PostData } from '../../api/getPosts';
+import { getUserPosts, PostData } from '../../api/getPosts';
 import Post from '../../layout/post';
 
-const AllPosts = () => {
+interface UserPostsProps {
+    userId: number;
+}
+
+const UserPosts: React.FC<UserPostsProps> = ({ userId }) => {
     const [posts, setPosts] = useState<PostData[]>([]);
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const fetchedPosts = await getAllPosts();
+            const fetchedPosts = await getUserPosts(userId);
             setPosts(fetchedPosts);
         };
 
         fetchPosts();
-    }, []);
+    }, [userId]);
 
     const sortedPosts = [...posts].sort((a, b) => b.id - a.id); // Ordena do maior para o menor
 
@@ -37,4 +41,4 @@ const AllPosts = () => {
     );
 };
 
-export default AllPosts;
+export default UserPosts;

@@ -10,7 +10,7 @@ export interface PostData {
     onPostClick: () => void;
 }
 
-export const getAllPosts = async (): Promise<PostData[]> => {
+const getAllPosts = async (): Promise<PostData[]> => {
     try {
         const response = await axios.get<PostData[]>('http://localhost:8080/api/posts');
         return response.data;
@@ -19,3 +19,15 @@ export const getAllPosts = async (): Promise<PostData[]> => {
         return [];
     }
 };
+
+const getUserPosts = async (userId: number): Promise<PostData[]> => {
+    try {
+        const response = await axios.get<PostData[]>(`http://localhost:8080/api/posts/usuario/${userId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Erro ao buscar posts:', error);
+        return [];
+    }
+};
+
+export { getAllPosts, getUserPosts };
