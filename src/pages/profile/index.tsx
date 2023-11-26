@@ -2,16 +2,20 @@ import Navbar from "../../layout/navbar";
 import { FaUserCheck, FaUserPlus } from "react-icons/fa";
 import Button from "../../components/Button";
 import { useLocation } from 'react-router-dom';
-import userDefault from "../../assets/default_user.jpg";
+import imageDefault from '../../assets/default/imageDefault';
 import AvatarUsuario from "../../components/Avatar";
 import { useUserInfo, useUserProfileInfo } from "../../api/userInfo";
 import { useState, useEffect } from 'react';
 import { getFollowersCount, getFollowingCount, getPostsCount } from '../../api/getProfileInfo';
 import UserPosts from "../../components/posts/UserPosts";
 import { checkIfUserIsFollowing, deixarDeSeguirUsuario, seguirUsuario } from "../../api/getFollow";
+import LoginModal from "../../components/modals/LoginModal";
+import RegisterModal from "../../components/modals/RegisterModal";
+import CommentModal from "../../components/modals/CommentModal";
+import { Toaster } from 'react-hot-toast';
 
 export default function Profile() {
-     // Dados do usuario pelo pathname
+    // Dados do usuario pelo pathname
     const location = useLocation();
     const { pathname } = location;
     const username = pathname.split('/profile/')[1];
@@ -72,7 +76,7 @@ export default function Profile() {
                 setIsFollowing(isUserFollowing);
             }
         };
-    
+
         checkIfFollowing();
     }, [userId, loggedUserId]);
 
@@ -84,7 +88,7 @@ export default function Profile() {
             }
         }
     };
-    
+
     const handleUnfollowClick = async () => {
         if (userId !== undefined && loggedUserId !== undefined) {
             if (isFollowing) {
@@ -96,11 +100,15 @@ export default function Profile() {
 
     return (
         <div className="bg-[#F0F2F5] min-h-screen w-full">
+            <Toaster />
             <Navbar />
+            <LoginModal />
+            <RegisterModal />
+            <CommentModal />
             <div className="flex justify-center items-center pt-[140px] w-full flex-col">
                 {/* Área de exibição do avatar */}
                 <div className="bg-gray-200 w-[763px] h-[246px] flex justify-center items-center">
-                    <AvatarUsuario avatar={userData?.avatar || userDefault} size="222px" />
+                    <AvatarUsuario avatar={userData?.avatar || imageDefault} size="222px" />
                 </div>
 
                 {/* Informações do usuário */}
@@ -133,12 +141,14 @@ export default function Profile() {
 
                 {/* Botões e outras ações */}
                 <div className="flex justify-between w-[763px] px-44 py-4 gap-5 bg-white">
-                    <Button
-                        icon={isFollowing ? FaUserCheck : FaUserPlus}
-                        color={isFollowing ? "seguindo" : "seguir"}
-                        label={isFollowing ? "Seguindo" : "Seguir"}
-                        onClick={isFollowing ? handleUnfollowClick : handleFollowClick}
-                    />
+                    {!loggedUserId || (loggedUserId !== userId && (
+                        <Button
+                            icon={isFollowing ? FaUserCheck : FaUserPlus}
+                            color={isFollowing ? "seguindo" : "seguir"}
+                            label={isFollowing ? "Seguindo" : "Seguir"}
+                            onClick={isFollowing ? handleUnfollowClick : handleFollowClick}
+                        />
+                    ))}
                     <Button label="XP: 350" onClick={() => { }} />
                 </div>
 

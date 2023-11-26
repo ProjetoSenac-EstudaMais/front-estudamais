@@ -1,3 +1,4 @@
+import imageDefault from "../../assets/default/imageDefault";
 import AvatarUsuario from "../Avatar";
 
 interface CustomProps {
@@ -17,7 +18,7 @@ export default function AnswersPost({ id, username, avatar, nome, sobrenome, con
                 <div className="flex flex-row gap-4"></div>
                 <div key={id} className="flex flex-col">
                     <div className="flex flex-row gap-4 items-center h-full">
-                        <a href={`/profile/${username}`}> <AvatarUsuario avatar={avatar || ''} size="45px" /></a>
+                        <a href={`/profile/${username}`}> <AvatarUsuario avatar={avatar || imageDefault} size="45px" /></a>
                     </div>
                 </div>
                 <div className="pl-6 flex gap-4 flex-col">

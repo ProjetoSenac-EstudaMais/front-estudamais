@@ -58,7 +58,7 @@ export default function Navbar() {
                 </div>
                 <div className="text-3xl text-black flex w-[165px] justify-between">
                     <a href="/"><FaHome className="cursor-pointer" /></a>
-                    <div onClick={handleToMenu}><FaUsers className="cursor-pointer" /></div>
+                    <a href="/communities" ><FaUsers className="cursor-pointer" /></a>
                     <div onClick={toggleDropdown}><FaBell className="cursor-pointer" /></div>
                 </div>
                 <div className="w-[65px] h-[65px] flex cursor-pointer">

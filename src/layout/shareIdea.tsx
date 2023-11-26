@@ -1,11 +1,11 @@
 import AvatarUsuario from "../components/Avatar";
 import { useState } from 'react';
-import Avatar from "../assets/default_user.jpg";
 import PesquisaInput from "../components/Pesquisa";
 import Button from "../components/Button";
 import { useUserInfo } from "../api/userInfo";
 import { newPost } from "../api/newPost";
 import toast from "react-hot-toast";
+import imageDefault from "../assets/default/imageDefault";
 
 export default function ShareIdea({ username }: { username: string }) {
   const { userData } = useUserInfo(username);
@@ -33,7 +33,7 @@ export default function ShareIdea({ username }: { username: string }) {
   return (
     <div className="w-[763px] h-[151px] bg-white rounded-md shadow">
       <div className="flex h-[91px] gap-3 px-4 items-center">
-        <AvatarUsuario avatar={ userData?.avatar || Avatar } size="65px" />
+        <AvatarUsuario avatar={ userData?.avatar || imageDefault } size="65px" />
         <PesquisaInput
           texto={`Compartilhe sua ideia, ${userData?.nome} ${userData?.sobrenome}`}
           value={conteudo}

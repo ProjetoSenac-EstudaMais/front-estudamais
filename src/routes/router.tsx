@@ -4,6 +4,7 @@ import Homepage from "../pages/homepage"
 import Profile from "../pages/profile"
 import Communities from "../pages/communities"
 import PostPage from "../pages/postPage"
+import CommunitiesPage from "../pages/communitiesPage"
 
 // Aqui será o nosso RouterManager que irá apontar um url e uma página para aquele url
 export default function RouterManager() {
@@ -16,6 +17,7 @@ export default function RouterManager() {
                 <Route path="/profile/:username" element={<Profile />} />
                 <Route path="/post/:postId" element={<PostPage />} />
                 <Route path="/communities" element={<Communities />} />
+                <Route path="/communities/:communityId" element={<CommunitiesPage />} />
             </Routes>
         </Router>
     )

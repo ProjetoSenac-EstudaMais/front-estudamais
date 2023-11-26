@@ -14,6 +14,7 @@ import AnswersPost from "../../components/posts/AnswersPost";
 import CommentSection from "../../components/posts/CommentSection";
 import { useUserInfo } from "../../api/userInfo";
 import { sendComment } from "../../api/sendComment";
+import imageDefault from "../../assets/default/imageDefault";
 
 export default function PostPage() {
     const nomeUsuario = localStorage.getItem('nomeUsuario');
@@ -107,7 +108,7 @@ export default function PostPage() {
                     )}
                     <div className="p-4">
                         <CommentSection
-                            avatar={userData?.avatar || userDefault}
+                            avatar={userData?.avatar || imageDefault}
                             value={commentContent}
                             onchange={handleCommentContentChange}
                             onclick={handleCommentSubmit}

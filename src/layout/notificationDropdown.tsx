@@ -18,9 +18,7 @@ const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ isOpen }) =
                 <p className='text-[12px] text-blue-600 cursor-pointer'>Marcar todas como lida</p>
             </div>
             <div className='flex flex-col w-ful max-h-[200px] overflow-y-auto'>
-                <Notification avatar={image} name='Henrique Silveira' action='repostou sua postagem' date='2 horas atrás' />
-                <Notification avatar={image} name='Henrique Silveira' action='repostou sua postagem' date='2 horas atrás' />
-                <Notification avatar={image} name='Henrique Silveira' action='repostou sua postagem' date='2 horas atrás' />
+                Nenhuma notificação
             </div>
         </div>
     );

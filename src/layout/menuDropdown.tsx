@@ -18,7 +18,7 @@ const MenuDropdown: React.FC<MenuDropdownProps> = ({ isOpen, username, isLoggedI
             <div className='absolute top-28 right-[36.1rem] w-[150px] rounded-md bg-white shadow-md '>
                 <div className='flex flex-col w-full max-h-[200px] overflow-y-auto'>
                     <a href={`/profile/${username}`} className='hover:bg-slate-100 duration-100 w-full px-4 py-2  cursor-pointer'>Meu Perfil</a>
-                    <a href="" className='hover:bg-slate-100 duration-100 w-full px-4 py-2  cursor-pointer'>Comunidades</a>
+                    <a href="/communities" className='hover:bg-slate-100 duration-100 w-full px-4 py-2  cursor-pointer'>Comunidades</a>
                     <p onClick={onLogout} className='hover:bg-slate-100 duration-100 w-full px-4 py-2 cursor-pointer'>Logout</p>
                 </div>
             </div>

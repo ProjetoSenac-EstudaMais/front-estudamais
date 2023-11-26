@@ -9,6 +9,7 @@ import { useUserInfo } from '../../api/userInfo';
 import CommentSection from '../posts/CommentSection';
 import { sendComment } from '../../api/sendComment';
 import { toast } from 'react-hot-toast';
+import imageDefault from '../../assets/default/imageDefault';
 
 const CommentModal = () => {
     const commentModal = useCommentModal();
@@ -63,7 +64,7 @@ const CommentModal = () => {
         <>
             <div className="flex flex-row gap-4">
                 <div className='flex flex-col gap-2 items-center'>
-                    <a href={`/profile/${post.autor.username}`}><AvatarUsuario avatar={post.autor.avatar || userDefault} size="65px" /></a>
+                    <a href={`/profile/${post.autor.username}`}><AvatarUsuario avatar={post.autor.avatar || imageDefault} size="65px" /></a>
                     <div className='bg-gray-400 h-[60px] w-[2px]'></div>
                 </div>
                 <div className="flex flex-col w-full">
