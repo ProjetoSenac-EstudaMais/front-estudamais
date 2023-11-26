@@ -88,7 +88,7 @@ export default function Post({ id, nome, sobrenome, username, tempo, conteudo, a
         <>
             <div className="w-[763px] p-4 cursor-pointer hover:bg-gray-50 duration-300">
                 <div onClick={handlePostClick} className="flex flex-row gap-4">
-                    <a href={`/profile/${username}`}><AvatarUsuario avatar={avatarPost || imageDefault} size="65px" /></a>
+                    <a className="w-[75px]" href={`/profile/${username}`}><AvatarUsuario avatar={avatarPost || imageDefault} size="65px" /></a>
                     <div className="flex flex-col w-full">
                         <div className="flex gap-2 items-center">
                             <a href={`/profile/${username}`} className="text-neutral-700 text-xl ">{nome} {sobrenome}</a>

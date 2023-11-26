@@ -17,6 +17,8 @@ import MenuHamburguer from "../components/menuHamburguer";
 import MenuDropdown from "./menuDropdown";
 import AvatarUsuarioDefault from "../components/AvatarDefault";
 import { useNavigate } from "react-router-dom";
+import imageDefault from "../assets/default/imageDefault";
+import Search from "../components/Search";
 
 export default function Navbar() {
     const loginModal = useLoginModal();
@@ -27,6 +29,13 @@ export default function Navbar() {
     const username = nomeUsuario ? nomeUsuario : ''
     const { userData } = useUserInfo(username);
     const navigate = useNavigate();
+    const [conteudo, setConteudo] = useState('');
+
+    const [isSearchDropdown, setIsSearchDropdown] = useState(false);
+
+    const toggleSearch = () => {
+        setIsSearchDropdown(!isSearchDropdown);
+    }
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -54,7 +63,9 @@ export default function Navbar() {
             <div className="w-[763px] flex justify-between items-center">
                 <div className="flex gap-7 items-center w-[410px]">
                     <img src={Logo} alt="logo" />
-                    <PesquisaInput texto="Pesquise no Estuda+" value={""} onchange={() => {}}/>
+                    <div className="w-full" onClick={toggleSearch}>
+                        <PesquisaInput texto="Pesquise no Estuda+" value={conteudo} onchange={(e: any) => setConteudo(e.target.value)} />
+                    </div>
                 </div>
                 <div className="text-3xl text-black flex w-[165px] justify-between">
                     <a href="/"><FaHome className="cursor-pointer" /></a>
@@ -62,19 +73,15 @@ export default function Navbar() {
                     <div onClick={toggleDropdown}><FaBell className="cursor-pointer" /></div>
                 </div>
                 <div className="w-[65px] h-[65px] flex cursor-pointer">
-                    {username ? (
-                        <div onClick={handleToMenu}>
-                            <AvatarUsuario avatar={userData?.avatar || ''} size="65px" />
-                        </div>
-                    ) : (
-                        <AvatarUsuarioDefault size="65px" />
-                    )}
-
+                    <div onClick={handleToMenu}>
+                        <AvatarUsuario avatar={userData?.avatar || imageDefault} size="65px" />
+                    </div>
                 </div>
                 <div className="cursor-pointer" onClick={toggleMenu}>
                     <MenuHamburguer />
                 </div>
             </div>
+            <Search isOpen={isSearchDropdown} conteudo={conteudo} />
             <NotificationDropdown isOpen={isDropdownOpen} />
             <MenuDropdown isLoggedIn={isLoggedIn} isOpen={isMenuOpen} username={userData?.username} onLogout={handleLogout} onLogin={handleLoginClick} />
         </div>

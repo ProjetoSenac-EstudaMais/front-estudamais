@@ -4,7 +4,7 @@ interface CustomPesquisaInput {
   onchange: any,
 }
 
-export default function PesquisaInput({texto, value,onchange}:CustomPesquisaInput) {
+export default function PesquisaInput({texto, value, onchange}:CustomPesquisaInput) {
 return (
   <input
   type="text"

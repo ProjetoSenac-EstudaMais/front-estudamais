@@ -11,7 +11,7 @@ export default function AvatarUsuario({ avatar, size }: CustomProps) {
       className="rounded-full"
       src={`data:image/jpeg;base64,${avatarSrc}`}
       alt="AvatarUser"
-      style={{ width: size, height: 'auto' }}
+      style={{ width: size, height: size }}
     />
   );
 }

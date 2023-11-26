@@ -1,5 +1,5 @@
 import Navbar from "../../layout/navbar";
-import { FaUserCheck, FaUserPlus } from "react-icons/fa";
+import { FaEdit, FaUserCheck, FaUserPlus } from "react-icons/fa";
 import Button from "../../components/Button";
 import { useLocation } from 'react-router-dom';
 import imageDefault from '../../assets/default/imageDefault';
@@ -13,6 +13,8 @@ import LoginModal from "../../components/modals/LoginModal";
 import RegisterModal from "../../components/modals/RegisterModal";
 import CommentModal from "../../components/modals/CommentModal";
 import { Toaster } from 'react-hot-toast';
+import EditModal from "../../components/modals/EditModal";
+import { useEditModal } from "../../hooks/useEditModal";
 
 export default function Profile() {
     // Dados do usuario pelo pathname
@@ -35,6 +37,8 @@ export default function Profile() {
     const [followersCount, setFollowersCount] = useState<number>(0);
     const [followingCount, setFollowingCount] = useState<number>(0);
     const [postsCount, setPostsCount] = useState<number>(0);
+
+    const editModal = useEditModal()
 
     useEffect(() => {
         const fetchFollowersCount = async () => {
@@ -98,17 +102,34 @@ export default function Profile() {
         }
     };
 
+    const handleEditOpen = () => {
+        editModal.onOpen();
+    }    
+
     return (
         <div className="bg-[#F0F2F5] min-h-screen w-full">
             <Toaster />
             <Navbar />
             <LoginModal />
+            <EditModal loggedUserId={loggedUserId} />
             <RegisterModal />
             <CommentModal />
             <div className="flex justify-center items-center pt-[140px] w-full flex-col">
                 {/* Área de exibição do avatar */}
-                <div className="bg-gray-200 w-[763px] h-[246px] flex justify-center items-center">
-                    <AvatarUsuario avatar={userData?.avatar || imageDefault} size="222px" />
+                <div className="bg-gray-200 w-[763px] h-[246px] flex justify-between items-center">
+                    <div className="w-1/3">
+
+                    </div>
+                    <div className="w-1/3 flex justify-center items-center">
+                        <AvatarUsuario avatar={userData?.avatar || imageDefault} size="222px" />
+                    </div>
+                    <div className="h-full w-1/3">
+                        {!loggedUserId || (loggedUserId == userId && (
+                            <div onClick={handleEditOpen} className="text-2xl p-4 h-full items-end justify-end flex cursor-pointer hover:text-blue-600 duration-100">
+                                <FaEdit />
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Informações do usuário */}

@@ -33,7 +33,9 @@ export default function ShareIdea({ username }: { username: string }) {
   return (
     <div className="w-[763px] h-[151px] bg-white rounded-md shadow">
       <div className="flex h-[91px] gap-3 px-4 items-center">
-        <AvatarUsuario avatar={ userData?.avatar || imageDefault } size="65px" />
+        <div className="w-[75px]">
+          <AvatarUsuario avatar={userData?.avatar || imageDefault} size="65px" />
+        </div>
         <PesquisaInput
           texto={`Compartilhe sua ideia, ${userData?.nome} ${userData?.sobrenome}`}
           value={conteudo}
