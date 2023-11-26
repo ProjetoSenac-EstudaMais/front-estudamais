@@ -1,6 +1,4 @@
 import React from 'react';
-import Notification from '../components/Notification';
-import image from '../assets/avatarExemplo3.png';
 
 interface NotificationDropdownProps {
     isOpen: boolean;

@@ -15,7 +15,6 @@ import { AuthContext } from "../auth/AuthContext";
 import { useUserInfo } from "../api/userInfo";
 import MenuHamburguer from "../components/menuHamburguer";
 import MenuDropdown from "./menuDropdown";
-import AvatarUsuarioDefault from "../components/AvatarDefault";
 import { useNavigate } from "react-router-dom";
 import imageDefault from "../assets/default/imageDefault";
 import Search from "../components/Search";

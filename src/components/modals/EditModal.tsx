@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Input from "../Input";
 import Modal from "../Modal";
 import { useEditModal } from "../../hooks/useEditModal";
 import Button from "../Button";
@@ -13,10 +12,7 @@ interface CustomProps {
 const EditModal = ({loggedUserId}: CustomProps) => {
     const editModal = useEditModal();
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const nome = '';
+    const [isLoading ] = useState(false);
 
     const [selectedFile, setSelectedFile] = useState<Blob | null>(null);
 

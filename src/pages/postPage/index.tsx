@@ -21,7 +21,7 @@ export default function PostPage() {
     const { userData } = useUserInfo(username);
 
     const [commentContent, setCommentContent] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const [, setIsLoading] = useState(false);
 
     const [post, setPost] = useState<PostData | null>(null);
     const { postId } = useParams();

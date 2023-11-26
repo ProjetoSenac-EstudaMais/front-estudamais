@@ -33,7 +33,7 @@ export default function Post({ id, nome, sobrenome, username, tempo, conteudo, a
     const { userData } = useUserInfo(userName);
     const userId = userData?.id;
     const [liked, setLiked] = useState(true);
-    const [likeColor, setLikeColor] = useState('red');
+    const [, setLikeColor] = useState('red');
     const navigate = useNavigate();
 
 
