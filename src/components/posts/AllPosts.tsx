@@ -14,16 +14,18 @@ const AllPosts = () => {
         fetchPosts();
     }, []);
 
+    const sortedPosts = [...posts].sort((a, b) => b.id - a.id); // Ordena do maior para o menor
+
     return (
         <div>
-            {posts.map((post: PostData) => (
+            {sortedPosts.map((post: PostData) => (
                 <Post
                     id={post.id}
                     key={post.id}
                     nome={post.autor.nome} 
                     sobrenome={post.autor.sobrenome} 
                     username={post.autor.username}
-                    tempo="Há pouco tempo"
+                    tempo="• 1 hora atrás"
                     conteudo={post.conteudo}
                     avatarPost={post.autor.avatar}
                     likes={post.likes ? post.likes.length : 0}

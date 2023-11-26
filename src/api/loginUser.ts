@@ -8,7 +8,11 @@ const loginUser = async (userData: any) => {
     // Salvar token e nome do usuário no local storage
     localStorage.setItem('token', token);
     localStorage.setItem('nomeUsuario', nomeUsuario);
-    window.location.reload();
+    
+    // Aguardar 1 segundo antes de recarregar a página
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
 
     return response.data;
   } catch (error) {

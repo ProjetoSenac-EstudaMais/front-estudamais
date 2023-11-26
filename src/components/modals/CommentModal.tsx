@@ -6,13 +6,15 @@ import userDefault from "../../assets/default_user.jpg";
 import { PostData } from '../../api/getAllPosts';
 import AvatarUsuario from '../Avatar';
 import useUserInfo from '../../api/userInfo';
-import Input from '../Input';
-import Button from '../Button';
+import CommentSection from '../posts/CommentSection';
+import { sendComment } from '../../api/sendComment';
+import { toast } from 'react-hot-toast';
 
 const CommentModal = () => {
     const commentModal = useCommentModal();
     const [isLoading, setIsLoading] = useState(false);
     const [post, setPost] = useState<PostData | null>(null); // Para armazenar o post específico
+    const [commentContent, setCommentContent] = useState(''); // Estado para armazenar o conteúdo do comentário
     const nomeUsuario = localStorage.getItem('nomeUsuario');
     const username = nomeUsuario ? nomeUsuario : ''
     const { userData } = useUserInfo(username);
@@ -37,6 +39,26 @@ const CommentModal = () => {
         fetchPostById();
     }, [commentModal.postId]);
 
+    const handleCommentContentChange = (event: any) => {
+        setCommentContent(event.target.value);
+    };
+
+    const handleCommentSubmit = async () => {
+        if (commentModal.postId && userData?.id && commentContent) {
+            try {
+                setIsLoading(true);
+                await sendComment(commentModal.postId, userData?.id, commentContent);
+                console.log('Comentário enviado com sucesso');
+                toast.success('Comentário enviado com sucesso!')
+            } catch (error) {
+                console.error('Erro ao enviar o comentário:', error);
+            } finally {
+                setIsLoading(false);
+                commentModal.onClose();
+            }
+        }
+    };
+
     const bodyContent = post ? (
         <>
             <div className="flex flex-row gap-4">
@@ -56,18 +78,13 @@ const CommentModal = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex flex-row gap-4 pt-4'>
-                <AvatarUsuario avatar={userData?.avatar || userDefault} size="55px" />
-                <input type="text" placeholder='Escreva sua resposta' className='p-4 outline-none w-full overflow-y-auto' />
-            </div>
-            <div className='flex w-full justify-end'>
-                <div className='w-1/5'>
-                    <Button
-                        label='Responder'
-                        onClick={() => { }}
-                    />
-                </div>
-            </div>
+
+            <CommentSection
+            avatar={userData?.avatar || userDefault}
+            value={commentContent}
+            onchange={handleCommentContentChange}
+            onclick={handleCommentSubmit}
+            />
         </>
     ) : (
         <p>Carregando o post...</p>

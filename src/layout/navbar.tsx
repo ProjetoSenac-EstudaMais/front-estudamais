@@ -8,7 +8,7 @@ import {
     FaBell
 } from "react-icons/fa";
 import { useState, useContext } from "react";
-import NotificationDropdown from "./NotificationDropdown";
+import NotificationDropdown from "./notificationDropdown";
 import AvatarUsuario from "../components/Avatar";
 import { logoutUser } from "../api/loginUser";
 import { AuthContext } from "../auth/AuthContext";
@@ -16,6 +16,7 @@ import useUserInfo from "../api/userInfo";
 import MenuHamburguer from "../components/menuHamburguer";
 import MenuDropdown from "./menuDropdown";
 import AvatarUsuarioDefault from "../components/AvatarDefault";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
     const loginModal = useLoginModal();
@@ -25,6 +26,7 @@ export default function Navbar() {
     const nomeUsuario = localStorage.getItem('nomeUsuario');
     const username = nomeUsuario ? nomeUsuario : ''
     const { userData } = useUserInfo(username);
+    const navigate = useNavigate();
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -43,6 +45,10 @@ export default function Navbar() {
         loginModal.onOpen();
     };
 
+    const handleToMenu = () => {
+        navigate(`/profile/${username}`)
+    }
+
     return (
         <div className="bg-white h-[125px] w-full flex items-center justify-center top-0 z-20 fixed shadow-md">
             <div className="w-[763px] flex justify-between items-center">
@@ -52,18 +58,20 @@ export default function Navbar() {
                 </div>
                 <div className="text-3xl text-black flex w-[165px] justify-between">
                     <a href="/"><FaHome className="cursor-pointer" /></a>
-                    <div onClick={handleLogout}><FaUsers className="cursor-pointer" /></div>
+                    <div onClick={handleToMenu}><FaUsers className="cursor-pointer" /></div>
                     <div onClick={toggleDropdown}><FaBell className="cursor-pointer" /></div>
                 </div>
                 <div className="w-[65px] h-[65px] flex cursor-pointer">
                     {username ? (
-                        <AvatarUsuario avatar={userData?.avatar || ''} size="65px" />
+                        <div onClick={handleToMenu}>
+                            <AvatarUsuario avatar={userData?.avatar || ''} size="65px" />
+                        </div>
                     ) : (
                         <AvatarUsuarioDefault size="65px" />
                     )}
 
                 </div>
-                <div onClick={toggleMenu}>
+                <div className="cursor-pointer" onClick={toggleMenu}>
                     <MenuHamburguer />
                 </div>
             </div>
