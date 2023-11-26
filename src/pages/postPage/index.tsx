@@ -12,7 +12,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import Post from "../../layout/post";
 import AnswersPost from "../../components/posts/AnswersPost";
 import CommentSection from "../../components/posts/CommentSection";
-import useUserInfo from "../../api/userInfo";
+import { useUserInfo } from "../../api/userInfo";
 import { sendComment } from "../../api/sendComment";
 
 export default function PostPage() {

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Avatar from "../assets/default_user.jpg";
 import PesquisaInput from "../components/Pesquisa";
 import Button from "../components/Button";
-import useUserInfo from "../api/userInfo";
+import { useUserInfo } from "../api/userInfo";
 import { newPost } from "../api/newPost";
 import toast from "react-hot-toast";
 

@@ -12,7 +12,7 @@ import NotificationDropdown from "./notificationDropdown";
 import AvatarUsuario from "../components/Avatar";
 import { logoutUser } from "../api/loginUser";
 import { AuthContext } from "../auth/AuthContext";
-import useUserInfo from "../api/userInfo";
+import { useUserInfo } from "../api/userInfo";
 import MenuHamburguer from "../components/menuHamburguer";
 import MenuDropdown from "./menuDropdown";
 import AvatarUsuarioDefault from "../components/AvatarDefault";

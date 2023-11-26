@@ -11,7 +11,7 @@ import {
 import ActionButton from "../components/posts/ActionButton";
 import { useCommentModal } from "../hooks/useCommentModal";
 import addLike from "../api/addLike";
-import useUserInfo from "../api/userInfo";
+import { useUserInfo } from "../api/userInfo";
 import { useNavigate } from "react-router-dom";
 
 interface CustomProps {
@@ -74,8 +74,8 @@ export default function Post({ id, nome, sobrenome, username, tempo, conteudo, a
 
     return (
         <>
-            <div onClick={handlePostClick} className="w-[763px] p-4 cursor-pointer hover:bg-gray-50 duration-300">
-                <div className="flex flex-row gap-4">
+            <div className="w-[763px] p-4 cursor-pointer hover:bg-gray-50 duration-300">
+                <div onClick={handlePostClick} className="flex flex-row gap-4">
                     <a href={`/profile/${username}`}><AvatarUsuario avatar={avatarPost || userDefault} size="65px" /></a>
                     <div className="flex flex-col w-full">
                         <div className="flex gap-2 items-center">

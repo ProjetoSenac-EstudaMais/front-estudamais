@@ -5,7 +5,7 @@ import CModal from '../posts/Cmodal';
 import userDefault from "../../assets/default_user.jpg";
 import { PostData } from '../../api/getPosts';
 import AvatarUsuario from '../Avatar';
-import useUserInfo from '../../api/userInfo';
+import { useUserInfo } from '../../api/userInfo';
 import CommentSection from '../posts/CommentSection';
 import { sendComment } from '../../api/sendComment';
 import { toast } from 'react-hot-toast';
